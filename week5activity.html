@@ -18,7 +18,8 @@
                     <p class="card-text" > The price of course is {{product.price}}</p>
                     <p class ="card-text">Location: {{product.location}} </p>
                     <p class ="card-text"> Number of spaces: {{product.spaces}}</p>
-                    <button v-if = "" v-on:click = "addToCart">Add to Cart</button>
+                    <button v-if = "moreThanZero" v-on:click = "addToCart">Add to Cart</button>
+                    <button v-else disabled = "disabled">Add to Cart</button>
                 </div>
             </div>
         </div>
@@ -31,7 +32,7 @@
                         id:0,
                         subject:"Math",
                         location: "London",
-                        price:"2000",
+                        price:2000,
                         spaces:5,
                     },
                     cart: [],
@@ -40,8 +41,14 @@
                     addToCart: function(){
                         this.cart.push(this.product.subject);
                         this.product.spaces-=1;
+                        // console.log(this.product.spaces);
                     }
                 },
+                computed :{
+                    moreThanZero: function(){
+                        return (this.product.spaces>0);
+                    }
+                }
             })
         </script> 
 
