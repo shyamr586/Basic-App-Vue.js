@@ -10,28 +10,36 @@
     </head>
     <body>
         <div id="app">
-            <div   class="card ml-5 shadow-sm mt-5 md-4" style="width:400px">
+            <div class="card ml-5 shadow-sm mt-5 md-4" style="width:400px">
                 <img class="card-img-top" src="https://p3cdn4static.sharpschool.com/UserFiles/Servers/Server_770743/Image/Technology/Other%20Pictures/math.jpg" alt="Card image" style="width:100%">
                 <div  class="card-body">
                     <h4 class="card-title" v-text="product.subject"></h4>
                     <p class ="card-text" v-text="product.subject" ></p>
                     <p class="card-text" > The price of course is {{product.price}}</p>
                     <p class ="card-text">Location: {{product.location}} </p>
-                    <p class ="card-text" v-text="product.Stock"> Stock is {{stock}}</p>
+                    <p class ="card-text"> Number of spaces: {{product.spaces}}</p>
+                    <button v-if = "" v-on:click = "addToCart">Add to Cart</button>
                 </div>
+            </div>
         </div>
 
         <script>
             var app = new Vue({
                 el: "#app",
                 data: {
-                    sitename: "Vue.js Pet Depot",
                     product: {
-                    id:0,
-                    subject:"Math",
-                    location: "London",
-                    price:"2000",
-                    stock:5,
+                        id:0,
+                        subject:"Math",
+                        location: "London",
+                        price:"2000",
+                        spaces:5,
+                    },
+                    cart: [],
+                },
+                methods :{
+                    addToCart: function(){
+                        this.cart.push(this.product.subject);
+                        this.product.spaces-=1;
                     }
                 },
             })
